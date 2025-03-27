@@ -1,0 +1,70 @@
+# RECONTEXT Default Configuration
+
+# Data paths
+data:
+  image_dir: ""  # Directory containing input images (will use default data directory if empty)
+  cache_dir: ""  # Cache directory for models and intermediate results (uses ~/.recontext/cache if empty)
+
+# Output settings
+output:
+  base_dir: ""  # Base output directory (will use default output directory if empty)
+  save_intermediate: true  # Save intermediate results
+
+# Reconstruction settings
+reconstruction:
+  feature_type: "superpoint"  # Feature extractor: 'sift' or 'superpoint'
+  matcher_type: "superglue"  # Feature matcher: 'mutual_nn' or 'superglue'
+  reconstruction_quality: "medium"  # Quality level: 'low', 'medium', or 'high'
+  use_colmap: true  # Use COLMAP for reconstruction
+  filter_outliers: true  # Filter outlier points
+  min_track_length: 3  # Minimum track length for triangulation
+  use_neural_implicit: false  # Use neural implicit surfaces for mesh generation
+  
+  # Neural implicit surface settings (if enabled)
+  neural_implicit:
+    points_sigma: 0.01  # Noise for off-surface points
+    learning_rate: 1e-4  # Learning rate for network training
+    num_iterations: 10000  # Number of training iterations
+    eikonal_weight: 0.1  # Weight for eikonal loss term
+    normal_weight: 1.0  # Weight for normal direction loss
+    marching_cubes_resolution: 128  # Resolution for marching cubes
+
+# Semantic segmentation settings
+segmentation:
+  model_type: "mask2former_coco"  # Model type: 'mask2former_coco' or 'mask2former_ade20k'
+  confidence_threshold: 0.5  # Confidence threshold for detections
+  enable_clip: true  # Enable CLIP for zero-shot recognition
+  device: ""  # Device to use (empty for auto-detect)
+
+# Semantic integration settings
+integration:
+  visibility_threshold: 0.1  # Threshold for point visibility check
+  min_views_per_point: 2  # Minimum number of views required for a point to be labeled
+  max_projection_distance: 0.05  # Maximum projection distance for mesh vertices
+  use_weighted_consensus: true  # Whether to use weighted consensus for conflicting labels
+  consensus_strategy: "ensemble"  # Strategy: 'majority', 'weighted', 'bayesian', 'confidence', 'ensemble'
+  filter_outliers: true  # Filter outlier labels
+  smoothen: true  # Apply spatial smoothing to labels
+
+# Scene graph settings
+scene_graph:
+  distance_threshold: 0.5  # Maximum distance for 'near' relationship
+  min_confidence: 0.7  # Minimum confidence for relationships
+  enable_functional: true  # Infer functional relationships
+  build_spatial_index: true  # Build spatial index for efficient queries
+
+# Query engine settings
+query_engine:
+  model_type: "default"  # Model type: 'default' or 'large'
+  device: ""  # Device to use (empty for auto-detect)
+  cache_dir: ""  # Cache directory for models (uses ~/.recontext/models if empty)
+
+# Visualization settings
+visualization:
+  point_size: 2.0  # Point size for point cloud visualization
+  background_color: [0.1, 0.1, 0.1]  # Background color [r, g, b]
+  show_labels: true  # Show semantic labels
+  label_size: 16  # Label text size
+  show_bounding_boxes: true  # Show object bounding boxes
+  show_axes: true  # Show coordinate axes
+  highlight_color: [1.0, 0.5, 0.0]  # Highlight color [r, g, b]

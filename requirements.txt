@@ -1,0 +1,42 @@
+# Core dependencies
+numpy>=1.19.0
+torch>=1.10.0
+torchvision>=0.11.0
+scipy>=1.7.0
+scikit-image>=0.18.0
+matplotlib>=3.4.0
+
+# 3D reconstruction dependencies
+open3d>=0.13.0
+opencv-python>=4.5.0
+networkx>=2.6.0
+
+# COLMAP interface
+py-colmap>=0.1.0
+
+# For spatial indexing in semantic integration
+rtree>=0.9.0
+
+# For deep learning models
+transformers>=4.10.0
+clip @ git+https://github.com/openai/CLIP.git
+tqdm>=4.60.0
+
+# For semantic segmentation
+# Detectron2 and Mask2Former are installed separately as they require specific installation steps
+# pip install 'git+https://github.com/facebookresearch/detectron2.git'
+# pip install 'git+https://github.com/facebookresearch/Mask2Former.git'
+
+# For web visualization
+pyqt5>=5.15.0
+
+# For configuration and I/O
+pyyaml>=5.4.0
+pillow>=8.2.0
+
+# For dataset handling
+py7zr>=0.16.0  # For 7z archives
+pyunpack>=0.2.1  # For various archive formats
+
+# Optional for distributed processing
+# ray>=1.0.0
